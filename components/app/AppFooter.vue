@@ -26,7 +26,7 @@
           </v-col>
         </v-row>
         <v-divider />
-        <v-row justify="right" no-gutters>
+        <v-row justify="end" no-gutters>
           <v-col>
             <div class="text-right">
               <div>
