@@ -1,0 +1,30 @@
+$body-font-family: 'Roboto', 'Noto Sans SC', 'Microsoft YaHei', sans-serif !default;
+
+$code-padding: unset;
+$code-kbd-border-radius: unset;
+$code-kbd-font-size: unset;
+$code-kbd-font-weight: unset;
+
+$material-light: (
+  'background': transparent,
+  'app-bar': #ffffffc0,
+  'navigation-drawer': #ffffffc0,
+  'cards': transparent,
+  'bg-color': transparent,
+  'code': (
+    'background': unset,
+    'color': currentColor
+  )
+);
+
+$material-dark: (
+  'background': transparent,
+  'app-bar': #000000c0,
+  'navigation-drawer': #000000c0,
+  'cards': transparent,
+  'bg-color': transparent,
+  'code': (
+    'background': unset,
+    'color': currentColor
+  )
+);

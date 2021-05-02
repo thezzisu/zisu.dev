@@ -1,0 +1,62 @@
+code,
+kbd,
+pre,
+samp {
+  font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
+}
+
+.bml-root {
+  div {
+    padding: 2px;
+  }
+
+  div:not(:first-child) {
+    margin-top: 2px;
+  }
+}
+
+.fill-width {
+  width: 100%;
+}
+
+.code-editor textarea {
+  font-family: monospace;
+  line-height: unset !important;
+}
+
+.z-object-id {
+  font-size: 0.8em;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.z-editor-monaco {
+  height: 500px;
+  resize: vertical;
+  overflow: scroll hidden;
+}
+
+.z-editor-basic {
+  font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
+  height: 500px;
+  border: #7f8c8d 2px solid;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.z-editor-basic:focus {
+  outline: none;
+}
+
+.theme--light .z-editor-basic {
+  color: #000;
+  &:focus {
+    border-color: #2c3e50;
+  }
+}
+
+.theme--dark .z-editor-basic {
+  color: #fff;
+  &:focus {
+    border-color: #ecf0f1;
+  }
+}

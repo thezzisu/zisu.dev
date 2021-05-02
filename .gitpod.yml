@@ -1,0 +1,9 @@
+tasks:
+  - init: yarn install
+    command: yarn dev
+
+vscode:
+  extensions:
+    - octref.vetur@0.32.0:03mwRhlVpWDul4qBChcVUA==
+    - dbaeumer.vscode-eslint@2.1.8:02aHhbJ0Q4aGdjHXlTdVKg==
+    - esbenp.prettier-vscode@5.9.2:/ZjVG4nabMGxTqOcyglnfQ==

@@ -1,0 +1,23 @@
+.acrylic {
+  .v-app-bar,
+  .v-footer,
+  .v-card:not(.v-card--flat, .v-sheet--outlined),
+  .v-navigation-drawer,
+  .v-menu__content {
+    backdrop-filter: blur(5px);
+  }
+
+  .theme--light {
+    &.v-card:not(.v-card--flat, .v-sheet--outlined),
+    &.v-menu__content {
+      background-color: #ffffffc0;
+    }
+  }
+
+  .theme--dark {
+    &.v-card:not(.v-card--flat, .v-sheet--outlined),
+    &.v-menu__content {
+      background-color: #000000c0;
+    }
+  }
+}
