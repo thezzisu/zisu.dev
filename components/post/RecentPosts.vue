@@ -32,7 +32,7 @@ export default Vue.extend({
   async fetch() {
     const searchParams: Record<string, any> = {
       page: 1,
-      per_page: 15,
+      per_page: 3,
       sort: 'updated'
     }
 

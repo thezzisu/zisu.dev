@@ -1,6 +1,6 @@
 <template>
-  <div :style="{ zIndex }">
-    <v-img :src="bg" />
+  <div :style="{ zIndex }" class="bg">
+    <v-img :src="bg" height="100%" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-div {
+.bg {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -47,5 +47,11 @@ div {
       transparent 50px,
       transparent 100px
     );
+}
+
+.credits {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }
 </style>

@@ -40,6 +40,8 @@
           </v-list>
         </v-card>
       </v-col>
+    </v-row>
+    <v-row justify="center">
       <v-col cols="12" lg="6" xl="4">
         <v-card>
           <v-card-title>Contact</v-card-title>
@@ -86,6 +88,8 @@
           </v-card-text>
         </v-card>
       </v-col>
+    </v-row>
+    <v-row justify="center">
       <v-col cols="12" lg="6" xl="4">
         <recent-posts />
       </v-col>
@@ -95,7 +99,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mdiFormatListText, mdiWeb, mdiArrowDown } from '@mdi/js'
+import { mdiFormatListText, mdiArrowDown } from '@mdi/js'
 import RecentPosts from '~/components/post/RecentPosts.vue'
 
 export default Vue.extend({
@@ -109,16 +113,6 @@ export default Vue.extend({
           icon: mdiFormatListText,
           title: 'Blog',
           subtitle: 'zisu.dev blog'
-        },
-        {
-          link: {
-            href: 'https://proxy.zhangzisu.cn/',
-            target: '_blank',
-            rel: 'noopener'
-          },
-          icon: mdiWeb,
-          title: 'Proxy',
-          subtitle: 'ZhangZisu.CN Proxy Services'
         }
       ],
       social: [
@@ -181,6 +175,7 @@ export default Vue.extend({
   },
   computed: {
     motto(): string {
+      if (process.server) return ''
       return this.$vuetify.theme.dark
         ? btoa('Goodbye world')
         : 'Code is philosophy'

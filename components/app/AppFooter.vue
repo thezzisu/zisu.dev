@@ -26,10 +26,18 @@
           </v-col>
         </v-row>
         <v-divider />
-        <v-row justify="center" no-gutters>
-          <div class="text-overline">
-            &copy; {{ new Date().getFullYear() }} ZhangZisu
-          </div>
+        <v-row justify="right" no-gutters>
+          <v-col>
+            <div class="text-right">
+              <div>
+                <code>&copy; {{ new Date().getFullYear() }} ZhangZisu</code>
+              </div>
+              <div>
+                Background Image Credit:
+                <a href="https://www.pixiv.net/users/45482476">あをもみじ</a>
+              </div>
+            </div>
+          </v-col>
         </v-row>
       </v-col>
     </v-row>
