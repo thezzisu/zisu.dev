@@ -15,10 +15,10 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
-    "@nuxt/http": "^0.6.2",
+    "@nuxt/http": "^0.6.4",
     "@nuxtjs/gtm": "^2.4.0",
     "cookie-universal-nuxt": "^2.1.4",
-    "core-js": "^3.8.3",
+    "core-js": "^3.11.2",
     "gravatar": "^1.8.1",
     "izitoast": "^1.4.0",
     "jwt-decode": "^3.1.2",
