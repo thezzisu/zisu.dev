@@ -50,7 +50,11 @@ function generateBuildConfig(): NuxtOptionsBuild | undefined {
           node: process.version
         })
       })
-    ]
+    ],
+    babel: {
+      // supress babel loose warning
+      plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]]
+    }
   }
 }
 
