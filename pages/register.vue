@@ -104,7 +104,10 @@ export default Vue.extend({
     },
     setToken(token: string) {
       const { exp } = jwtDecode(token) as any
-      this.$cookies.set('token', token, { expires: new Date(exp * 1000) })
+      this.$cookies.set('token', token, {
+        expires: new Date(exp * 1000),
+        path: '/'
+      })
       this.$axios.setToken(token, 'Bearer')
     }
   }
