@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <v-row justify="center">
       <v-col cols="12" sm="7" md="8" lg="6">
         <nuxt-child />

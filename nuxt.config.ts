@@ -73,6 +73,7 @@ function generateModulesConfig(): NuxtOptionsModule[] | undefined {
 const config: NuxtConfig = {
   target: 'server',
   modern: true,
+  components: false,
   head: {
     titleTemplate: '%s - zisu.dev',
     title: 'zisu.dev',
