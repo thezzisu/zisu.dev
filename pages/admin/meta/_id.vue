@@ -68,7 +68,7 @@ export default Vue.extend({
   },
   async fetch() {
     const id = this.$route.params.id
-    const data: any = await this.$http.$get(`/meta/${id}`)
+    const data: any = await this.$axios.$get(`/meta/${id}`)
     this.meta = data
   },
   computed: {
@@ -90,7 +90,7 @@ export default Vue.extend({
       this.loading = true
       await this.$toast.$wrap(async () => {
         const meta = this.$data.meta
-        await this.$http.$put(`/meta/${this.$data.meta._id}`, meta)
+        await this.$axios.$put(`/meta/${this.$data.meta._id}`, meta)
         return { title: 'Success' }
       })
       this.loading = false
@@ -98,7 +98,7 @@ export default Vue.extend({
     async remove() {
       this.loading = true
       await this.$toast.$wrap(async () => {
-        await this.$http.$delete(`/meta/${this.$data.meta._id}`)
+        await this.$axios.$delete(`/meta/${this.$data.meta._id}`)
         this.$router.replace('/admin/meta')
         return { title: 'Success' }
       })

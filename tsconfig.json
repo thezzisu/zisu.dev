@@ -27,7 +27,7 @@
       "@types/node",
       "@nuxt/types",
       "@nuxt/vue-app",
-      "@nuxt/http",
+      "@nuxtjs/axios",
       "@nuxtjs/vuetify",
       "cookie-universal-nuxt"
     ]

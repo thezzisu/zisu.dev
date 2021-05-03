@@ -56,7 +56,7 @@ export default Vue.extend({
       this.loading = true
       await this.$toast.$wrap(async () => {
         const meta = this.meta
-        const _id: string = await this.$http.$post(`/meta`, meta)
+        const _id: string = await this.$axios.$post(`/meta`, meta)
         this.$router.push('/admin/meta/' + _id)
         return { title: 'Success', message: 'ID: ' + _id }
       })

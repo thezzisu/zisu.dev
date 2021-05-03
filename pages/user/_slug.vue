@@ -126,7 +126,7 @@ import { enabled, open, getState } from '~/utils/github'
 export default Vue.extend({
   async asyncData(ctx) {
     const slug = ctx.params.slug
-    const data: any = await ctx.$http.$get(`/user/${slug}`)
+    const data: any = await ctx.$axios.$get(`/user/${slug}`)
     return {
       user: data,
       githubEnabled: enabled
@@ -178,7 +178,7 @@ export default Vue.extend({
         if (this.pass) {
           body.pass = this.pass
         }
-        await this.$http.$put(`/user/${this.$data.user._id}`, body)
+        await this.$axios.$put(`/user/${this.$data.user._id}`, body)
         return { title: 'Success' }
       })
       this.loading = false
@@ -186,7 +186,7 @@ export default Vue.extend({
     async remove() {
       this.loading = true
       await this.$toast.$wrap(async () => {
-        await this.$http.$delete(`/user/${this.$data.user._id}`)
+        await this.$axios.$delete(`/user/${this.$data.user._id}`)
         this.$router.replace('/admin/user')
         return { title: 'Success' }
       })
@@ -196,7 +196,7 @@ export default Vue.extend({
       this.loading = true
       if (this.$data.user.oauth.github) {
         try {
-          await this.$http.$post(`/oauth/github/unlink/${this.$data.user._id}`)
+          await this.$axios.$post(`/oauth/github/unlink/${this.$data.user._id}`)
           delete this.$data.user.oauth.github
           this.$toast.success({ title: 'Success' })
         } catch (e) {
@@ -211,7 +211,7 @@ export default Vue.extend({
       this.loading = true
       try {
         const body = { code, state }
-        this.$data.user.oauth.github = await this.$http.$post(
+        this.$data.user.oauth.github = await this.$axios.$post(
           `/oauth/github/link/${this.$data.user._id}`,
           body
         )

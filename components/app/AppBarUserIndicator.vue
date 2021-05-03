@@ -72,7 +72,7 @@ export default Vue.extend({
     logout() {
       this.$store.commit(':logout')
       this.$cookies.remove('token')
-      this.$http.setToken(false)
+      this.$axios.setToken(false)
       this.$toast.success({ title: 'Bye' })
       this.$router.push('/')
     },

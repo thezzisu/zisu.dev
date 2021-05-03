@@ -56,13 +56,13 @@ export default Vue.extend({
   },
   async fetch() {
     const { page, itemsPerPage } = this.tableOptions
-    const searchParams: Record<string, any> = {
+    const params: Record<string, any> = {
       page,
       per_page: itemsPerPage
     }
 
-    const data: any = await this.$http.$get('/user/', {
-      searchParams
+    const data: any = await this.$axios.$get('/user/', {
+      params
     })
 
     this.users = data.items

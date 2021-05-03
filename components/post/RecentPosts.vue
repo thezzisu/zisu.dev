@@ -30,14 +30,14 @@ export default Vue.extend({
     }
   },
   async fetch() {
-    const searchParams: Record<string, any> = {
+    const params: Record<string, any> = {
       page: 1,
       per_page: 3,
       sort: 'updated'
     }
 
-    const data: any = await this.$http.$get('/post/', {
-      searchParams
+    const data: any = await this.$axios.$get('/post/', {
+      params
     })
 
     this.posts = data.items

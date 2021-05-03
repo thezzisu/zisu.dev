@@ -63,7 +63,7 @@ export default Vue.extend({
   },
   async fetch() {
     const id = this.$route.params.id
-    const data: any = await this.$http.$get(`/tag/${id}`)
+    const data: any = await this.$axios.$get(`/tag/${id}`)
     this.tag = data
   },
   created() {
@@ -77,7 +77,7 @@ export default Vue.extend({
       this.loading = true
       await this.$toast.$wrap(async () => {
         const tag = this.tag
-        await this.$http.$put(`/tag/${this.tag._id}`, tag)
+        await this.$axios.$put(`/tag/${this.tag._id}`, tag)
         return { title: 'Success' }
       })
       this.loading = false
@@ -85,7 +85,7 @@ export default Vue.extend({
     async remove() {
       this.loading = true
       await this.$toast.$wrap(async () => {
-        await this.$http.$delete(`/tag/${this.tag._id}`)
+        await this.$axios.$delete(`/tag/${this.tag._id}`)
         this.$router.replace('/admin/tag')
         return { title: 'Success' }
       })

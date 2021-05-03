@@ -139,7 +139,7 @@ export default Vue.extend({
     }
   },
   async fetch() {
-    this.stat = await this.$http.$get('/admin/stat')
+    this.stat = await this.$axios.$get('/admin/stat')
   },
   created() {
     this.$store.commit('scope:update', 'admin')

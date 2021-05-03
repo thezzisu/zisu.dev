@@ -85,7 +85,7 @@ export default Vue.extend({
       this.loading = true
       await this.$toast.$wrap(async () => {
         const post = this.$data.post
-        const _id: string = await this.$http.$post(`/post`, post)
+        const _id: string = await this.$axios.$post(`/post`, post)
         this.$router.push('/admin/post/' + _id)
         return { title: 'Success', message: 'ID: ' + _id }
       })

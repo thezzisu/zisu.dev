@@ -74,26 +74,24 @@ export default Vue.extend({
     }
   },
   async fetch() {
-    const searchParams: Record<string, any> = {
+    const params: Record<string, any> = {
       page: this.curPage,
       per_page: this.postPerPage
     }
     if (this.search) {
-      searchParams.search = this.search
+      params.search = this.search
     }
 
-    const data: any = await this.$http.$get('/post/', {
-      searchParams
+    const data: any = await this.$axios.$get('/post/', {
+      params
     })
 
     this.posts = data.items
     this.postCount = data.total
     this.pageCount = Math.ceil(data.total / this.postPerPage)
   },
-  head() {
-    return {
-      title: 'Index'
-    }
+  head: {
+    title: 'Index'
   },
   watch: {
     curPage() {

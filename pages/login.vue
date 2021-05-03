@@ -94,7 +94,7 @@ export default Vue.extend({
           pass: this.pass,
           expires: this.session
         }
-        const res: any = await this.$http.$post('/login', body)
+        const res: any = await this.$axios.$post('/login', body)
         this.setToken(res.token)
         this.$store.commit(':login', res)
         this.$router.push('/')
@@ -109,7 +109,7 @@ export default Vue.extend({
       this.loading = true
       await this.$toast.$wrap(async () => {
         const body = { code, state }
-        const res: any = await this.$http.$post('/oauth/github/login', body)
+        const res: any = await this.$axios.$post('/oauth/github/login', body)
         this.setToken(res.token)
         this.$store.commit(':login', res)
         this.$router.push('/')
@@ -120,7 +120,7 @@ export default Vue.extend({
     setToken(token: string) {
       const { exp } = jwtDecode(token) as any
       this.$cookies.set('token', token, { expires: new Date(exp * 1000) })
-      this.$http.setToken(token, 'Bearer')
+      this.$axios.setToken(token, 'Bearer')
     }
   }
 })

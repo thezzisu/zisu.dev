@@ -40,7 +40,7 @@ export default Vue.extend({
       if (this.loading) return
       this.loading = true
       await this.$toast.$wrap(async () => {
-        const res: any = await this.$http.$get('/tag')
+        const res: any = await this.$axios.$get('/tag')
         this.items = res.items
       })
       this.loading = false

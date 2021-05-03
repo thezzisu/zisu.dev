@@ -30,7 +30,7 @@ export default Vue.extend({
     }
   },
   async fetch() {
-    const data: any = await this.$http.$get('/tag')
+    const data: any = await this.$axios.$get('/tag')
     this.tags = data.items
   }
 })

@@ -85,18 +85,18 @@ export const actions: ActionTree<RootState, RootState> = {
 
       if (token) {
         try {
-          ctx.$http.setToken(token, 'Bearer')
-          const res: any = await ctx.$http.$get('/session')
+          ctx.$axios.setToken(token, 'Bearer')
+          const res: any = await ctx.$axios.$get('/session')
           store.commit('token:update', token)
           store.commit('user:update', res.user)
         } catch (e) {
-          ctx.$http.setToken(false)
+          ctx.$axios.setToken(false)
           $cookies.remove('token')
         }
       }
       store.commit(':initialize')
     } else if (store.state.token) {
-      ctx.$http.setToken(token, 'Bearer')
+      ctx.$axios.setToken(token, 'Bearer')
     }
 
     if (process.client) {

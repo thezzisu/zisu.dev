@@ -30,7 +30,7 @@ export default Vue.extend({
   },
   async fetch() {
     const slug = this.$route.params.slug
-    this.post = await this.$http.$get(`/post/${slug}`)
+    this.post = await this.$axios.$get(`/post/${slug}`)
     if (this.post.priority < 0) {
       this.$nuxt.context.redirect(`/${this.post.slug}`)
     }

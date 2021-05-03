@@ -60,7 +60,7 @@ function generateBuildConfig(): NuxtOptionsBuild | undefined {
 
 function generateModulesConfig(): NuxtOptionsModule[] | undefined {
   const options = [
-    '@nuxt/http',
+    '@nuxtjs/axios',
     'cookie-universal-nuxt'
     // '@nuxtjs/pwa',
   ]
@@ -94,8 +94,9 @@ const config: NuxtConfig = {
   env: {
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || ''
   },
-  http: {
-    baseURL: process.env.API_ENDPOINT || 'https://cms.zzisu.dev'
+  axios: {
+    baseURL: process.env.API_ENDPOINT,
+    progress: false
   },
   gtm: {
     id: process.env.GTM_ID

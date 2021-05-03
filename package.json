@@ -15,7 +15,7 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
-    "@nuxt/http": "^0.6.4",
+    "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/gtm": "^2.4.0",
     "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.11.2",

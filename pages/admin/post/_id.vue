@@ -138,7 +138,7 @@ export default Vue.extend({
   },
   async fetch() {
     const id = this.$route.params.id
-    const data: any = await this.$http.$get(`/post/${id}`)
+    const data: any = await this.$axios.$get(`/post/${id}`)
     this.post = data
   },
   computed: {
@@ -159,7 +159,7 @@ export default Vue.extend({
       this.loading = true
       await this.$toast.$wrap(async () => {
         const post = this.post
-        await this.$http.$put(`/post/${this.post._id}`, post)
+        await this.$axios.$put(`/post/${this.post._id}`, post)
         return { title: 'Success' }
       })
       this.loading = false
@@ -167,7 +167,7 @@ export default Vue.extend({
     async addTag() {
       this.loading = true
       await this.$toast.$wrap(async () => {
-        const res: boolean = await this.$http.$put(
+        const res: boolean = await this.$axios.$put(
           `/post/${this.post._id}/tag/${this.newTag._id}`
         )
         if (res) {
@@ -181,7 +181,7 @@ export default Vue.extend({
     async deleteTag(tag: any) {
       this.loading = true
       await this.$toast.$wrap(async () => {
-        const res: boolean = await this.$http.$delete(
+        const res: boolean = await this.$axios.$delete(
           `/post/${this.post._id}/tag/${tag._id}`
         )
         if (res) {
@@ -194,7 +194,7 @@ export default Vue.extend({
     async remove() {
       this.loading = true
       await this.$toast.$wrap(async () => {
-        await this.$http.$delete(`/post/${this.post._id}`)
+        await this.$axios.$delete(`/post/${this.post._id}`)
         this.$router.replace('/admin/post')
         return { title: 'Success' }
       })

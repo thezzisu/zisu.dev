@@ -60,14 +60,14 @@ export default Vue.extend({
   },
   async fetch() {
     const { page, itemsPerPage } = this.postsTableOpt
-    const searchParams: Record<string, any> = {
+    const params: Record<string, any> = {
       page,
       per_page: itemsPerPage,
       published_before: 8640000000000000
     }
 
-    const data: any = await this.$http.$get(this.page ? '/page/' : '/post', {
-      searchParams
+    const data: any = await this.$axios.$get(this.page ? '/page/' : '/post', {
+      params
     })
 
     this.posts = data.items

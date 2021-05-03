@@ -80,7 +80,7 @@ export default Vue.extend({
   name: 'TagPage',
   components: { PostList, PostSidebar, Bml, ErrorCard },
   async asyncData(ctx) {
-    const tag = await ctx.$http.$get(`/tag/${ctx.route.params.slug}`)
+    const tag = await ctx.$axios.$get(`/tag/${ctx.route.params.slug}`)
     return {
       tag
     }
@@ -97,8 +97,8 @@ export default Vue.extend({
     }
   },
   async fetch() {
-    const data: any = await this.$http.$get('/post/', {
-      searchParams: {
+    const data: any = await this.$axios.$get('/post/', {
+      params: {
         page: this.curPage,
         per_page: this.postPerPage,
         tag: this.tag._id
