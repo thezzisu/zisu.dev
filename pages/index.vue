@@ -81,17 +81,12 @@ export default Vue.extend({
       mdiArrowDown
     }
   },
-  head() {
-    return {
-      title: 'Index'
-    }
+  head: {
+    title: 'Index'
   },
   computed: {
-    motto(): string {
-      if (process.server) return ''
-      return this.$vuetify.theme.dark
-        ? btoa('Goodbye world')
-        : 'Code is philosophy'
+    motto() {
+      return this.$vuetify.theme.dark ? 'ZGVsdXNpb24=' : 'Code is philosophy'
     }
   },
   created() {
