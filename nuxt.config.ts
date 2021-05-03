@@ -2,11 +2,11 @@ import cp from 'child_process'
 import path from 'path'
 import fs from 'fs'
 import { NuxtConfig } from '@nuxt/types'
-import { NuxtOptionsBuild } from '@nuxt/types/config/build'
-import { NuxtOptionsModule } from '@nuxt/types/config/module'
 
 const APP_NAME = 'zisu.dev'
 const APP_DESC = 'zisu.dev'
+
+//#region Helper functions
 
 function run(cmd: string) {
   return cp.execSync(cmd).toString().trim()
@@ -29,46 +29,9 @@ function findPackage() {
   return require(path.join(__dirname, name))
 }
 
-function generateBuildConfig(): NuxtOptionsBuild | undefined {
-  if (process.env.VERCEL && !process.env.CI) {
-    // Do not add webpack plugins when running on Vercel
-    return
-  }
-  const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
-  const { DefinePlugin } = require('webpack')
+//#endregion
 
-  const pkg = findPackage()
-
-  return {
-    plugins: [
-      new MonacoWebpackPlugin(),
-      new DefinePlugin({
-        BUILD: JSON.stringify({
-          git: getGitInfo(),
-          time: Date.now(),
-          version: pkg.version,
-          node: process.version
-        })
-      })
-    ],
-    babel: {
-      // supress babel loose warning
-      plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]]
-    }
-  }
-}
-
-function generateModulesConfig(): NuxtOptionsModule[] | undefined {
-  const options = [
-    '@nuxtjs/axios',
-    'cookie-universal-nuxt'
-    // '@nuxtjs/pwa',
-  ]
-  if (process.env.GTM_ID) {
-    options.push('@nuxtjs/gtm')
-  }
-  return options
-}
+//#region main config
 
 const config: NuxtConfig = {
   target: 'server',
@@ -82,7 +45,8 @@ const config: NuxtConfig = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: []
   },
   css: ['~/styles/vuetify.scss', '~/styles/global.scss'],
   plugins: [
@@ -91,16 +55,24 @@ const config: NuxtConfig = {
     '~/plugins/shortcuts.client.ts',
     '~/plugins/swc.client.ts'
   ],
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify', '@nuxtjs/pwa'],
+  modules: [
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt'
+    //
+  ],
+  buildModules: [
+    '@nuxt/typescript-build',
+    '@nuxtjs/vuetify',
+    '@nuxtjs/pwa'
+    //
+  ],
+  build: {},
   env: {
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || ''
   },
   axios: {
     baseURL: process.env.API_ENDPOINT,
     progress: false
-  },
-  gtm: {
-    id: process.env.GTM_ID
   },
   vuetify: {
     customVariables: ['~/styles/variables.scss'],
@@ -122,52 +94,47 @@ const config: NuxtConfig = {
       short_name: APP_NAME,
       description: APP_DESC,
       background_color: '#2c3e50'
-    },
-    workbox: {
-      runtimeCaching: [
-        {
-          urlPattern: '^https:\\/\\/res\\.zisu\\.dev',
-          handler: 'NetworkFirst',
-          strategyOptions: {
-            cacheName: 'statically'
-          }
-        },
-        {
-          urlPattern: '^https:\\/\\/cms\\.zzisu\\.dev',
-          handler: 'NetworkFirst',
-          strategyOptions: {
-            cacheName: 'zcms'
-          }
-        },
-        {
-          urlPattern: '^https:\\/\\/fonts\\.googleapis\\.com',
-          handler: 'StaleWhileRevalidate',
-          strategyOptions: {
-            cacheName: 'google-fonts-stylesheets'
-          }
-        },
-        {
-          urlPattern: '^https:\\/\\/fonts\\.gstatic\\.com',
-          handler: 'StaleWhileRevalidate',
-          strategyOptions: {
-            cacheName: 'google-fonts-webfonts'
-          }
-        },
-        {
-          urlPattern: '^https:\\/\\/(.*\\.gravatar\\.com|img\\.shields\\.io)',
-          handler: 'NetworkFirst',
-          strategyOptions: {
-            cacheName: '3rd-img'
-          }
-        }
-      ]
     }
   },
   loading: {
     color: '#3498db'
-  },
-  build: generateBuildConfig(),
-  modules: generateModulesConfig()
+  }
+}
+
+//#endregion
+
+if (!process.env.VERCEL || process.env.CI) {
+  const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+  const { DefinePlugin } = require('webpack')
+
+  const pkg = findPackage()
+
+  config.build!.plugins = [
+    new MonacoWebpackPlugin(),
+    new DefinePlugin({
+      BUILD: JSON.stringify({
+        git: getGitInfo(),
+        time: Date.now(),
+        version: pkg.version,
+        node: process.version
+      })
+    })
+  ]
+
+  config.build!.babel = {
+    // supress babel loose warning
+    plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]]
+  }
+}
+
+if (process.env.CF_BEACON_TOKEN) {
+  // @ts-ignore
+  config.head.script.push({
+    defer: true,
+    src: 'https://static.cloudflareinsights.com/beacon.min.js',
+    'data-cf-beacon': `{"token": "${process.env.CF_BEACON_TOKEN}"}`,
+    body: true
+  })
 }
 
 export default config
