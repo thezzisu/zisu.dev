@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mdiCertificate, mdiCreativeCommons, mdiGit } from '@mdi/js'
+import { mdiCertificate, mdiCreativeCommons } from '@mdi/js'
 
 export default Vue.extend({
   name: 'AppFooter',

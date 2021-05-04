@@ -7,7 +7,6 @@ module.exports = {
   extends: [
     '@nuxtjs/eslint-config-typescript',
     'prettier',
-    'prettier/vue',
     'plugin:nuxt/recommended'
   ],
   plugins: ['prettier'],

@@ -6,7 +6,7 @@ import { NuxtConfig } from '@nuxt/types'
 const APP_NAME = 'zisu.dev'
 const APP_DESC = 'zisu.dev'
 
-//#region Helper functions
+// #region Helper functions
 
 function run(cmd: string) {
   return cp.execSync(cmd).toString().trim()
@@ -29,9 +29,9 @@ function findPackage() {
   return require(path.join(__dirname, name))
 }
 
-//#endregion
+// #endregion
 
-//#region main config
+// #region main config
 
 const config: NuxtConfig = {
   target: 'server',
@@ -101,7 +101,7 @@ const config: NuxtConfig = {
   }
 }
 
-//#endregion
+// #endregion
 
 if (!process.env.VERCEL || process.env.CI) {
   const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
