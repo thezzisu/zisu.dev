@@ -120,5 +120,7 @@ $avatar-margin-offset: 80px;
 
 .avatar {
   margin-top: -$avatar-margin-offset;
+  pointer-events: none;
+  user-select: none;
 }
 </style>

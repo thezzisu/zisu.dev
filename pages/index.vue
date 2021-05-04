@@ -105,5 +105,7 @@ $site-title-margin: 72px;
 .site-title-logo {
   margin-top: -$site-title-margin;
   border: 2px solid #7f8c8d;
+  pointer-events: none;
+  user-select: none;
 }
 </style>

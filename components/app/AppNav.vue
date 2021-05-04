@@ -5,7 +5,7 @@
         <v-icon>{{ link.icon }}</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-list-item-title class="text-overline" v-text="link.text" />
+        <v-list-item-title class="text-monospace" v-text="link.text" />
       </v-list-item-content>
     </v-list-item>
     <template v-if="isAdmin">

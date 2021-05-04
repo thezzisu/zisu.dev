@@ -1,3 +1,5 @@
+@import '~/styles/config.scss';
+
 .theme--light {
   /**
  * prism.js default theme for JavaScript, CSS and HTML
@@ -10,7 +12,7 @@
     color: black;
     background: none;
     text-shadow: 0 1px white;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-family: $monospace-font;
     font-size: 1em;
     text-align: left;
     white-space: pre;
@@ -18,23 +20,8 @@
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
     tab-size: 4;
-
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
     hyphens: none;
-  }
-
-  pre[class*='language-']::-moz-selection,
-  pre[class*='language-'] ::-moz-selection,
-  code[class*='language-']::-moz-selection,
-  code[class*='language-'] ::-moz-selection {
-    text-shadow: none;
-    background: #b3d4fc;
   }
 
   pre[class*='language-']::selection,
@@ -57,11 +44,6 @@
     padding: 1em;
     margin: 0.5em 0;
     overflow: auto;
-  }
-
-  :not(pre) > code[class*='language-'],
-  pre[class*='language-'] {
-    background: #f5f2f0;
   }
 
   /* Inline code */
@@ -154,7 +136,7 @@
   pre[class*='language-'] {
     color: #ccc;
     background: none;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-family: $monospace-font;
     font-size: 1em;
     text-align: left;
     white-space: pre;
@@ -162,14 +144,7 @@
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
     tab-size: 4;
-
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
     hyphens: none;
   }
 
@@ -178,11 +153,6 @@
     padding: 1em;
     margin: 0.5em 0;
     overflow: auto;
-  }
-
-  :not(pre) > code[class*='language-'],
-  pre[class*='language-'] {
-    background: #2d2d2d;
   }
 
   /* Inline code */

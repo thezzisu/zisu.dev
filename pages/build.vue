@@ -121,15 +121,6 @@ export default Vue.extend({
             'https://img.shields.io/github/workflow/status/thezzisu/zisu.dev/ci?label=&logo=github&style=flat-square'
           ],
           icon: mdiWeb
-        },
-        {
-          name: 'Proxy',
-          description: 'proxy.zhangzisu.cn',
-          link: 'https://proxy.zhangzisu.cn',
-          badges: [
-            'https://img.shields.io/netlify/4d380063-9f4b-4a33-8092-df8026fa7570?label=&logo=netlify&style=flat-square&logoColor=FFF'
-          ],
-          icon: mdiWeb
         }
       ],
       powers: [

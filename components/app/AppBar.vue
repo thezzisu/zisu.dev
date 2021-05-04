@@ -1,17 +1,14 @@
 <template>
   <v-app-bar app>
-    <v-btn icon tile x-large @click="$emit('change', !value)">
-      <v-avatar tile size="32">
-        <img src="~/assets/logo.svg" alt="site logo" />
-      </v-avatar>
-    </v-btn>
-    <v-btn text x-large class="pa-0 text-left" disabled>
-      <div class="ma-2 site-title">
-        <div class="font-weight-bold">zisu.dev</div>
-        <div class="text-overline" style="line-height: unset">
-          {{ scope }}
-        </div>
-      </div>
+    <v-app-bar-nav-icon @click="$emit('change', !value)" />
+    <v-btn
+      text
+      x-large
+      class="text-none text-h5"
+      href="/"
+      @click.stop.prevent="$router.push('/')"
+    >
+      <code>zisu.dev</code>
     </v-btn>
     <v-spacer />
     <user-indicator />
