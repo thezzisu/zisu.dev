@@ -1,13 +1,13 @@
 <template>
   <v-card>
-    <v-card-title>
+    <v-card-text class="d-flex text--primary">
       <div>
         <div><code>Hello! I'm Zisu Zhang</code></div>
         <div class="text-h4">
           <code>I build softwares.</code>
         </div>
       </div>
-    </v-card-title>
+    </v-card-text>
     <v-divider />
     <v-card-text>
       <template v-for="(s, i) in social">

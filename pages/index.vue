@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-col cols="12" lg="6" xl="4">
         <v-card>
-          <v-card-title>
+          <v-card-title class="justify-center">
             <v-avatar size="128">
               <img :src="require('~/static/icon.png')" />
             </v-avatar>
