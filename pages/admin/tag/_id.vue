@@ -66,9 +66,6 @@ export default Vue.extend({
     const data: any = await this.$axios.$get(`/tag/${id}`)
     this.tag = data
   },
-  created() {
-    this.$store.commit('scope:update', 'admin::tag')
-  },
   methods: {
     reset() {
       this.$fetch()

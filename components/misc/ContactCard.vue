@@ -1,12 +1,11 @@
 <template>
-  <v-card class="contact">
+  <v-card>
     <v-card-title>
-      <div>Contact</div>
-      <v-spacer />
       <div>
-        <v-avatar size="128" class="avatar">
-          <img src="https://res.zisu.dev/defined/avatar_formal" />
-        </v-avatar>
+        <div><code>Hello! I'm Zisu Zhang</code></div>
+        <div class="text-h4">
+          <code>I build softwares.</code>
+        </div>
       </div>
     </v-card-title>
     <v-divider />
@@ -112,15 +111,4 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-$avatar-margin-offset: 80px;
-
-.contact {
-  margin-top: $avatar-margin-offset;
-}
-
-.avatar {
-  margin-top: -$avatar-margin-offset;
-  pointer-events: none;
-  user-select: none;
-}
 </style>

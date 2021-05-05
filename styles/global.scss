@@ -73,3 +73,7 @@ samp {
 .text-monospace {
   font-family: $monospace-font !important;
 }
+
+.flex-fill-rest {
+  flex-grow: 1;
+}

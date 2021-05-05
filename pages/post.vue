@@ -22,9 +22,6 @@ export default Vue.extend({
     return {
       titleTemplate: '%s - Blog - zisu.dev'
     }
-  },
-  created() {
-    this.$store.commit('scope:update', 'blog')
   }
 })
 </script>

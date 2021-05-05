@@ -136,9 +136,6 @@ export default Vue.extend({
     return {
       title: 'Build Info'
     }
-  },
-  created() {
-    this.$store.commit('scope:update', 'build info')
   }
 })
 </script>

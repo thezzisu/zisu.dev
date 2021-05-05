@@ -22,7 +22,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapState } from 'vuex'
 import { mdiCog } from '@mdi/js'
 import UserIndicator from '~/components/app/AppBarUserIndicator.vue'
 
@@ -41,9 +40,7 @@ export default Vue.extend({
       mdiCog
     }
   },
-  computed: {
-    ...mapState(['scope'])
-  },
+  computed: {},
   methods: {
     settingsDrawer() {
       this.$store.commit(

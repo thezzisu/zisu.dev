@@ -87,9 +87,6 @@ export default Vue.extend({
       title: 'Links'
     }
   },
-  created() {
-    this.$store.commit('scope:update', 'friend links')
-  },
   methods: {
     screenshotUrl(link: string) {
       return screenshot(link)

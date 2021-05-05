@@ -75,9 +75,6 @@ export default Vue.extend({
       },
       deep: true
     }
-  },
-  created() {
-    this.$store.commit('scope:update', 'admin::user')
   }
 })
 </script>

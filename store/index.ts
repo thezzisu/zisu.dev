@@ -5,7 +5,6 @@ import { getItem } from '~/utils/localStorage'
 type Theme = 'auto' | 'dark' | 'light'
 
 export const state = () => ({
-  scope: 'index',
   theme: 'auto' as Theme,
   acrylic: true,
   token: null as string | null,
@@ -26,9 +25,6 @@ export const getters: GetterTree<RootState, RootState> = {
 }
 
 export const mutations: MutationTree<RootState> = {
-  'scope:update'(state: RootState, scope: string) {
-    state.scope = scope
-  },
   'theme:update'(state: RootState, theme: Theme) {
     state.theme = theme
   },

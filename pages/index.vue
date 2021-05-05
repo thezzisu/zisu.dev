@@ -2,21 +2,17 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" lg="6" xl="4">
-        <v-card ref="next" class="site-title-card">
+        <v-card>
           <v-card-title>
-            <v-spacer />
-            <div>
-              <v-avatar size="128" class="site-title-logo">
-                <img :src="require('~/static/icon.png')" />
-              </v-avatar>
+            <v-avatar size="128">
+              <img :src="require('~/static/icon.png')" />
+            </v-avatar>
+            <div class="text-center text-h3 flex-fill-rest">
+              <v-badge :content="version">
+                <code>zisu.dev</code>
+              </v-badge>
             </div>
-            <v-spacer />
           </v-card-title>
-          <v-card-text class="text-center text-h3 text--primary">
-            <v-badge :content="version">
-              <code>zisu.dev</code>
-            </v-badge>
-          </v-card-text>
           <v-divider />
           <v-card-text class="text-center motto">
             <code>{{ motto }}</code>
@@ -26,7 +22,12 @@
     </v-row>
     <v-row justify="center">
       <v-col cols="12" lg="6" xl="4">
-        <v-card ref="next">
+        <contact-card />
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" lg="6" xl="4">
+        <v-card>
           <v-card-title>Next</v-card-title>
           <v-divider />
           <v-list>
@@ -41,11 +42,6 @@
             </v-list-item>
           </v-list>
         </v-card>
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col cols="12" lg="6" xl="4">
-        <contact-card />
       </v-col>
     </v-row>
     <v-row justify="center">
@@ -88,9 +84,6 @@ export default Vue.extend({
     motto() {
       return this.$vuetify.theme.dark ? 'ZGVsdXNpb24=' : 'Code is philosophy'
     }
-  },
-  created() {
-    this.$store.commit('scope:update', 'index')
   }
 })
 </script>

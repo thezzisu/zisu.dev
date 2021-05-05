@@ -79,9 +79,6 @@ export default Vue.extend({
       return this.$data.meta.slug.startsWith('$$')
     }
   },
-  created() {
-    this.$store.commit('scope:update', 'admin::meta')
-  },
   methods: {
     reset() {
       this.$fetch()

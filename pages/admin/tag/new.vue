@@ -47,9 +47,6 @@ export default Vue.extend({
       }
     }
   },
-  created() {
-    this.$store.commit('scope:update', 'admin::tag')
-  },
   methods: {
     reset() {
       this.$router.go(0)

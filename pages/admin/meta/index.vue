@@ -92,9 +92,6 @@ export default Vue.extend({
       },
       deep: true
     }
-  },
-  created() {
-    this.$store.commit('scope:update', 'admin::meta')
   }
 })
 </script>

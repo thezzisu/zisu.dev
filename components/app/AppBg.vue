@@ -8,9 +8,6 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'AppBg',
   computed: {
-    scope() {
-      return this.$route.path.split('/')[1] || 'index'
-    },
     zIndex() {
       return this.$store.state.zen ? 6 : -1
     }
