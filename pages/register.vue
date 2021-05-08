@@ -42,7 +42,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mdiLoginVariant, mdiGithub } from '@mdi/js'
-import jwtDecode from 'jwt-decode'
 import { enabled, open, getState } from '~/utils/github'
 
 export default Vue.extend({
