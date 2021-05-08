@@ -5,7 +5,7 @@
         <v-card>
           <v-card-title class="justify-center">
             <v-avatar size="128">
-              <img :src="require('~/static/icon.png')" />
+              <img :src="require('~/static/icon.png')" alt="site logo" />
             </v-avatar>
             <div class="text-center text-h3 flex-fill-rest">
               <v-badge :content="version">

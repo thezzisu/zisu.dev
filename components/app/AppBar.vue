@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app>
-    <v-app-bar-nav-icon @click="$emit('change', !value)" />
+    <v-app-bar-nav-icon aria-label="menu" @click="$emit('change', !value)" />
     <v-btn
       text
       x-large
