@@ -29,7 +29,7 @@ export default Vue.extend({
   render(h, { data, props, listeners, parent }) {
     // @ts-expect-error
     if (parent._isMounted) {
-      if (parent.$store.state.editor.basic) {
+      if (parent.$store.state.local.editor.basic) {
         return h(BasicEditor, {
           ...data,
           props,

@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer
     id="settings-drawer"
-    v-model="settingsDrawer"
+    v-model="settings"
     right
     disable-route-watcher
     fixed
@@ -11,12 +11,12 @@
     <v-toolbar flat color="transparent">
       <div class="text-button">Settings</div>
       <v-spacer />
-      <v-btn icon @click="settingsDrawer = !settingsDrawer">
+      <v-btn icon @click="settings = !settings">
         <v-icon>{{ mdiClose }}</v-icon>
       </v-btn>
     </v-toolbar>
     <v-divider />
-    <template v-if="settingsDrawer">
+    <template v-if="settings">
       <theme />
       <v-divider />
       <editor />
@@ -31,6 +31,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mdiClose } from '@mdi/js'
+import { sync } from 'vuex-pathify'
 import Theme from '~/components/app/settings/Theme.vue'
 import Editor from '~/components/app/settings/Editor.vue'
 import Storage from '~/components/app/settings/Storage.vue'
@@ -45,14 +46,7 @@ export default Vue.extend({
     }
   },
   computed: {
-    settingsDrawer: {
-      get() {
-        return this.$store.state.settingsDrawer
-      },
-      set(val) {
-        this.$store.commit('settingsDrawer:update', val)
-      }
-    }
+    settings: sync('drawers@settings')
   }
 })
 </script>

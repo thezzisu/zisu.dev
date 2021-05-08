@@ -70,8 +70,8 @@ export default Vue.extend({
   },
   methods: {
     logout() {
-      this.$store.commit(':logout')
-      this.$cookies.remove('token')
+      this.$store.set('user', null)
+      this.$store.set('persist@token', '')
       this.$axios.setToken(false)
       this.$toast.success({ title: 'Bye' })
       this.$router.push('/')

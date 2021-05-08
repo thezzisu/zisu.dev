@@ -1,5 +1,5 @@
 <template>
-  <v-app :class="{ acrylic: $store.state.acrylic }">
+  <v-app :class="{ acrylic }">
     <app-bar v-model="drawer" />
     <client-only>
       <v-navigation-drawer v-model="drawer" app>
@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { get } from 'vuex-pathify'
 import AppBar from '~/components/app/AppBar.vue'
 import AppFooter from '~/components/app/AppFooter.vue'
 import AppBg from '~/components/app/AppBg.vue'
@@ -31,13 +32,17 @@ export default Vue.extend({
       drawer: null
     }
   },
+  computed: {
+    theme: get('persist@theme'),
+    acrylic: get('persist@acrylic')
+  },
   watch: {
-    '$store.state.theme': {
+    theme: {
       immediate: true,
       handler(val) {
-        if (val === 'light') {
+        if (val === 2) {
           this.$vuetify.theme.dark = false
-        } else if (val === 'dark') {
+        } else if (val === 1) {
           this.$vuetify.theme.dark = true
         } else if (process.client) {
           const darkMediaQuery = window.matchMedia(

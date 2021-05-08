@@ -51,13 +51,14 @@ const config: NuxtConfig = {
   css: ['~/styles/vuetify.scss', '~/styles/global.scss'],
   plugins: [
     '~/plugins/init.ts',
+    '~/plugins/persist-state.client.ts',
     '~/plugins/toast.client.ts',
     '~/plugins/shortcuts.client.ts',
     '~/plugins/swc.client.ts'
   ],
   modules: [
     '@nuxtjs/axios',
-    'cookie-universal-nuxt'
+    ['cookie-universal-nuxt', { parseJSON: false }]
     //
   ],
   buildModules: [

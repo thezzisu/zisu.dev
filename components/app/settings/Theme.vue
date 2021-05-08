@@ -22,8 +22,7 @@ import {
   mdiWeatherNight,
   mdiDesktopTowerMonitor
 } from '@mdi/js'
-
-const themes = ['auto', 'dark', 'light']
+import { sync } from 'vuex-pathify'
 
 export default Vue.extend({
   name: 'Theme',
@@ -35,23 +34,7 @@ export default Vue.extend({
     }
   },
   computed: {
-    theme: {
-      get() {
-        return themes.indexOf(this.$store.state.theme)
-      },
-      set(val: number) {
-        this.setTheme(themes[val])
-      }
-    }
-  },
-  methods: {
-    setTheme(theme: string) {
-      this.$cookies.set('theme', theme, {
-        expires: new Date(2147483647000),
-        path: '/'
-      })
-      this.$store.commit('theme:update', theme)
-    }
+    theme: sync('persist@theme')
   }
 })
 </script>

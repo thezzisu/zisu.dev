@@ -95,20 +95,13 @@ export default Vue.extend({
       await this.$toast.$wrap(async () => {
         const body = { code, state }
         const res: any = await this.$axios.$post('/oauth/github/register', body)
-        this.setToken(res.token)
-        this.$store.commit(':login', res)
+        this.$axios.setToken(res.token, 'Bearer')
+        this.$store.set('persist@token', res.token)
+        this.$store.set('user', res.user)
         this.$router.push(`/user/${res.user._id}`)
         return { title: `Welcome ${res.user.name}` }
       })
       this.loading = false
-    },
-    setToken(token: string) {
-      const { exp } = jwtDecode(token) as any
-      this.$cookies.set('token', token, {
-        expires: new Date(exp * 1000),
-        path: '/'
-      })
-      this.$axios.setToken(token, 'Bearer')
     }
   }
 })

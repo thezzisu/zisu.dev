@@ -13,20 +13,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { setItem } from '~/utils/localStorage'
+import { sync } from 'vuex-pathify'
 
 export default Vue.extend({
   name: 'Editor',
   computed: {
-    basic: {
-      get() {
-        return this.$store.state.editor.basic
-      },
-      set(val: boolean) {
-        this.$store.commit('editor:basic:update', val)
-        setItem('settings:editor:basic', val)
-      }
-    }
+    basic: sync('local@editor.basic')
   }
 })
 </script>

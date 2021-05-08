@@ -13,16 +13,16 @@
     <v-spacer />
     <user-indicator />
     <v-divider vertical inset />
-    <v-btn icon aria-label="Settings" @click="settingsDrawer">
+    <v-btn icon aria-label="Settings" @click="settings = !settings">
       <v-icon>{{ mdiCog }}</v-icon>
     </v-btn>
   </v-app-bar>
 </template>
 
-
 <script lang="ts">
 import Vue from 'vue'
 import { mdiCog } from '@mdi/js'
+import { sync } from 'vuex-pathify'
 import UserIndicator from '~/components/app/AppBarUserIndicator.vue'
 
 export default Vue.extend({
@@ -40,14 +40,8 @@ export default Vue.extend({
       mdiCog
     }
   },
-  computed: {},
-  methods: {
-    settingsDrawer() {
-      this.$store.commit(
-        'settingsDrawer:update',
-        !this.$store.state.settingsDrawer
-      )
-    }
+  computed: {
+    settings: sync('drawers@settings')
   }
 })
 </script>

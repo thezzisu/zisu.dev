@@ -29,7 +29,8 @@
       "@nuxt/vue-app",
       "@nuxtjs/axios",
       "@nuxtjs/vuetify",
-      "cookie-universal-nuxt"
+      "cookie-universal-nuxt",
+      "vuex-pathify/types/vuex"
     ]
   },
   "exclude": [

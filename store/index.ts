@@ -1,105 +1,73 @@
 import { Context } from '@nuxt/types'
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
-import { getItem } from '~/utils/localStorage'
-
-type Theme = 'auto' | 'dark' | 'light'
+import pathify, { make } from 'vuex-pathify'
 
 export const state = () => ({
-  theme: 'auto' as Theme,
-  acrylic: true,
-  token: null as string | null,
   user: null as Record<string, any> | null,
-  initialized: false,
   zen: false,
-  settingsDrawer: false,
-  editor: {
-    basic: false
+  drawers: {
+    settings: false
+  },
+  persist: {
+    theme: 0, // [auto, dark, light]
+    acrylic: 1,
+    token: ''
+  },
+  local: {
+    editor: {
+      basic: false
+    }
   }
 })
 
 type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
+  ...make.getters(state),
   isAdmin: (state) => state.user?.perm.admin,
   userBadge: (state) => (state.user?.perm.admin ? 'Admin' : 'User')
 }
 
 export const mutations: MutationTree<RootState> = {
-  'theme:update'(state: RootState, theme: Theme) {
-    state.theme = theme
-  },
-  'acrylic:update'(state: RootState, acrylic: boolean) {
-    state.acrylic = acrylic
-  },
-  'token:update'(state: RootState, token: string) {
-    state.token = token
-  },
-  'user:update'(state: RootState, user: any) {
-    state.user = user
-  },
-  'zen:update'(state: RootState, zen: boolean) {
-    state.zen = zen
-  },
-  'settingsDrawer:update'(state: RootState, settingsDrawer: boolean) {
-    state.settingsDrawer = settingsDrawer
-  },
-  ':initialize'(state: RootState) {
-    state.initialized = true
-  },
-  ':login'(state: RootState, { token, user }) {
-    state.token = token
-    state.user = user
-  },
-  ':logout'(state: RootState) {
-    state.token = state.user = null
-  },
-  'editor:basic:update'(state: RootState, basic: boolean) {
-    state.editor.basic = basic
-  }
+  ...make.mutations(state)
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  async nuxtInit(store, ctx: Context) {
-    const { app } = ctx
-    const { $cookies } = app
-    const token = $cookies.get('token')
-    const acrylic = $cookies.get('acrylic')
-    const theme = $cookies.get('theme')
-
-    if (!store.state.initialized) {
-      if (['auto', 'light', 'dark'].includes(theme)) {
-        store.commit('theme:update', theme)
-      } else if (theme !== undefined) {
-        $cookies.remove('theme')
-      }
-
-      if (typeof acrylic === 'boolean') {
-        store.commit('acrylic:update', acrylic)
-      } else if (acrylic !== undefined) {
-        $cookies.remove('acrylic')
-      }
-
-      if (token) {
+  ...make.actions(state),
+  async nuxtInit(_store, ctx: Context) {
+    if (process.server) {
+      const cur = ctx.app.$cookies.get('state')
+      if (cur) {
         try {
-          ctx.$axios.setToken(token, 'Bearer')
-          const res: any = await ctx.$axios.$get('/session')
-          store.commit('token:update', token)
-          store.commit('user:update', res.user)
+          const parsed = JSON.parse(cur)
+          const { persist, ...old } = this.state
+          this.replaceState({
+            ...old,
+            persist: {
+              ...persist,
+              ...parsed
+            }
+          })
         } catch (e) {
-          ctx.$axios.setToken(false)
-          $cookies.remove('token')
+          ctx.app.$cookies.remove('state')
         }
       }
-      store.commit(':initialize')
-    } else if (store.state.token) {
-      ctx.$axios.setToken(token, 'Bearer')
     }
 
-    if (process.client) {
-      store.commit(
-        'editor:basic:update',
-        getItem<boolean>('settings:editor:basic') ?? false
-      )
+    const token = this.state.persist.token
+    if (token) {
+      ctx.$axios.setToken(token, 'Bearer')
+      if (!this.state.user) {
+        try {
+          const res: any = await ctx.$axios.$get('/session')
+          this.set('user', res.user)
+        } catch (e) {
+          this.set('persist@token', '')
+          ctx.$axios.setToken(false)
+        }
+      }
     }
   }
 }
+
+export const plugins = [pathify.plugin]

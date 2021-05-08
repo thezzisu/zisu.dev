@@ -47,7 +47,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mdiAccountPlus, mdiGithub } from '@mdi/js'
-import jwtDecode from 'jwt-decode'
 import { enabled, open, getState } from '~/utils/github'
 
 export default Vue.extend({
@@ -69,17 +68,15 @@ export default Vue.extend({
       mdiGithub
     }
   },
-  head() {
-    return {
-      title: 'Login'
-    }
+  head: {
+    title: 'Login'
   },
   mounted() {
     const githubState = getState()
     if (githubState) {
       const { code, state } = this.$route.query
       if (githubState === state) {
-        this.githubLogin(code, state)
+        this.githubLogin(code as string, state)
       } else {
         this.$router.replace('/')
       }
@@ -95,8 +92,9 @@ export default Vue.extend({
           expires: this.session
         }
         const res: any = await this.$axios.$post('/login', body)
-        this.setToken(res.token)
-        this.$store.commit(':login', res)
+        this.$axios.setToken(res.token, 'Bearer')
+        this.$store.set('persist@token', res.token)
+        this.$store.set('user', res.user)
         this.$router.push('/')
         return { title: `Welcome ${res.user.name}` }
       })
@@ -110,20 +108,13 @@ export default Vue.extend({
       await this.$toast.$wrap(async () => {
         const body = { code, state }
         const res: any = await this.$axios.$post('/oauth/github/login', body)
-        this.setToken(res.token)
-        this.$store.commit(':login', res)
+        this.$axios.setToken(res.token, 'Bearer')
+        this.$store.set('persist@token', res.token)
+        this.$store.set('user', res.user)
         this.$router.push('/')
         return { title: `Welcome ${res.user.name}` }
       })
       this.loading = false
-    },
-    setToken(token: string) {
-      const { exp } = jwtDecode(token) as any
-      this.$cookies.set('token', token, {
-        expires: new Date(exp * 1000),
-        path: '/'
-      })
-      this.$axios.setToken(token, 'Bearer')
     }
   }
 })
