@@ -17,6 +17,7 @@
               Background Author:
               <a href="https://www.pixiv.net/users/45482476">あをもみじ</a>
             </div>
+            <status />
           </div>
         </v-col>
       </v-row>
@@ -27,9 +28,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mdiCertificate, mdiCreativeCommons } from '@mdi/js'
+import Status from '~/components/app/Status.vue'
 
 export default Vue.extend({
   name: 'AppFooter',
+  components: { Status },
   data() {
     return {
       build: BUILD,
