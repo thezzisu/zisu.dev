@@ -5,7 +5,7 @@
         :color="colors[status]"
         v-bind="attrs"
         target="_blank"
-        href="https://stats.uptimerobot.com/rm4gOFAYgV"
+        href="https://status.zisu.dev"
         v-on="on"
       >
         <v-icon left>{{ icons[status] }}</v-icon>
