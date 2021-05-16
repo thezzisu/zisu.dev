@@ -10,6 +10,7 @@ export const state = () => ({
   },
   persist: {
     theme: 0, // [auto, dark, light]
+    sysTheme: 2, // Default is light
     acrylic: 1,
     token: ''
   },
@@ -25,7 +26,8 @@ type RootState = ReturnType<typeof state>
 export const getters: GetterTree<RootState, RootState> = {
   ...make.getters(state),
   isAdmin: (state) => state.user?.perm.admin,
-  userBadge: (state) => (state.user?.perm.admin ? 'Admin' : 'User')
+  userBadge: (state) => (state.user?.perm.admin ? 'Admin' : 'User'),
+  theme: (state) => state.persist.theme || state.persist.sysTheme
 }
 
 export const mutations: MutationTree<RootState> = {
