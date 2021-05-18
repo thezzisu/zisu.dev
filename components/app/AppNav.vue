@@ -1,6 +1,6 @@
 <template>
   <v-list nav dense>
-    <v-list-item v-for="(link, i) of links" :key="i" :to="link.to" nuxt>
+    <v-list-item v-for="(link, i) of links" :key="i" v-bind="link.link" nuxt>
       <v-list-item-avatar tile size="24">
         <v-icon>{{ link.icon }}</v-icon>
       </v-list-item-avatar>
@@ -24,6 +24,7 @@ import {
   mdiInformationOutline,
   mdiLink,
   mdiRocketLaunch,
+  mdiTrainVariant,
   mdiUpdate
 } from '@mdi/js'
 import AdminNav from '~/components/admin/AdminNav.vue'
@@ -34,12 +35,17 @@ export default Vue.extend({
   data() {
     return {
       links: [
-        { to: '/', icon: mdiHome, text: 'Home' },
-        { to: '/post', icon: mdiFormatListText, text: 'Blog' },
-        { to: '/about', icon: mdiInformationOutline, text: 'About' },
-        { to: '/changelog', icon: mdiUpdate, text: 'Changelog' },
-        { to: '/build', icon: mdiRocketLaunch, text: 'Build Info' },
-        { to: '/link', icon: mdiLink, text: 'Links' }
+        { link: { to: '/' }, icon: mdiHome, text: 'Home' },
+        { link: { to: '/post' }, icon: mdiFormatListText, text: 'Blog' },
+        { link: { to: '/about' }, icon: mdiInformationOutline, text: 'About' },
+        { link: { to: '/changelog' }, icon: mdiUpdate, text: 'Changelog' },
+        { link: { to: '/build' }, icon: mdiRocketLaunch, text: 'Build Info' },
+        { link: { to: '/link' }, icon: mdiLink, text: 'Links' },
+        {
+          link: { href: 'https://travellings.pages.dev', target: '_blank' },
+          icon: mdiTrainVariant,
+          text: 'Travelling'
+        }
       ]
     }
   },

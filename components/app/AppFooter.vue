@@ -2,7 +2,27 @@
   <v-footer>
     <v-container fluid>
       <v-row justify="end">
-        <v-col>
+        <v-col cols="auto">
+          <div class="text-right text-monospace text--white">
+            <div>
+              <v-btn
+                outlined
+                target="_blank"
+                href="https://travellings.pages.dev"
+                small
+                class="text-none"
+              >
+                <v-icon left>{{ mdiTrainVariant }}</v-icon>
+                Travelling
+              </v-btn>
+            </div>
+            <div class="mt-1">
+              <status />
+            </div>
+          </div>
+        </v-col>
+        <v-divider vertical />
+        <v-col cols="auto">
           <div class="text-right text-monospace text--white">
             <div>
               <template v-for="(badge, i) of badges">
@@ -13,11 +33,10 @@
               </template>
             </div>
             <div>&copy; {{ new Date().getFullYear() }} ZhangZisu</div>
-            <div>
-              Background Author:
+            <div class="text-caption">
+              BgImg Author:
               <a href="https://www.pixiv.net/users/45482476">あをもみじ</a>
             </div>
-            <status />
           </div>
         </v-col>
       </v-row>
@@ -27,7 +46,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mdiCertificate, mdiCreativeCommons } from '@mdi/js'
+import { mdiCertificate, mdiCreativeCommons, mdiTrainVariant } from '@mdi/js'
 import Status from '~/components/app/Status.vue'
 
 export default Vue.extend({
@@ -45,7 +64,8 @@ export default Vue.extend({
           icon: mdiCreativeCommons,
           text: 'BY-SA'
         }
-      ]
+      ],
+      mdiTrainVariant
     }
   }
 })
