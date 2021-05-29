@@ -49,12 +49,12 @@ export default Vue.extend({
         { link: { to: '/build' }, icon: mdiRocketLaunch, text: 'Build Info' },
         { link: { to: '/link' }, icon: mdiLink, text: 'Links' },
         {
-          link: { href: 'https://dev2dev.pages.dev', target: '_blank' },
+          link: { href: 'https://dev2dev.zisu.dev', target: '_blank' },
           icon: svgDev2Dev,
           text: 'Dev2Dev'
         },
         {
-          link: { href: 'https://travellings.pages.dev', target: '_blank' },
+          link: { href: 'https://travellings.link', target: '_blank' },
           icon: mdiTrainVariant,
           text: 'Travelling'
         }

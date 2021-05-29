@@ -22,7 +22,7 @@
               <v-btn
                 depressed
                 target="_blank"
-                href="https://travellings.pages.dev"
+                href="https://travellings.link"
                 small
                 class="text-none mt-1"
               >
