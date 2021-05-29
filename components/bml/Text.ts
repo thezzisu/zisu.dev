@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import md from '~/utils/markdown'
+import Md from '~/utils/markdown'
 
 export default Vue.extend({
   name: 'BmlText',
@@ -11,6 +11,7 @@ export default Vue.extend({
     }
   },
   render(h, ctx) {
+    const md = Md()
     return h(
       'div',
       Object.assign({}, ctx.data, {

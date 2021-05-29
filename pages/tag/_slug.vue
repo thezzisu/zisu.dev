@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="12" sm="7" md="8" lg="6">
+      <v-col cols="12" sm="7" md="8">
         <v-row v-if="tag" justify="center">
           <v-col cols="12">
             <v-card>
@@ -60,8 +60,8 @@
           </v-row>
         </template>
       </v-col>
-      <v-col cols="12" sm="5" md="4" lg="3">
-        <post-sidebar />
+      <v-col cols="12" sm="5" md="4">
+        <tags-card />
       </v-col>
     </v-row>
   </v-container>
@@ -72,13 +72,13 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { mdiLabel } from '@mdi/js'
 import PostList from '~/components/post/PostList.vue'
-import PostSidebar from '~/components/post/PostSidebar.vue'
 import Bml from '~/components/bml/Bml'
 import ErrorCard from '~/components/app/ErrorCard.vue'
+import TagsCard from '~/components/tag/TagsCard.vue'
 
 export default Vue.extend({
   name: 'TagPage',
-  components: { PostList, PostSidebar, Bml, ErrorCard },
+  components: { PostList, Bml, ErrorCard, TagsCard },
   async asyncData(ctx) {
     const tag = await ctx.$axios.$get(`/tag/${ctx.route.params.slug}`)
     return {

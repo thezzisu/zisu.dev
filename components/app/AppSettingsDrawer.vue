@@ -4,7 +4,7 @@
     v-model="settings"
     right
     disable-route-watcher
-    fixed
+    app
     hide-overlay
     temporary
   >

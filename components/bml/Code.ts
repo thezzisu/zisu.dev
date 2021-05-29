@@ -1,11 +1,13 @@
-import Prism from '~/utils/prism.ts'
+import Vue from 'vue'
+import Prism from '~/utils/prism'
 
-export default {
+export default Vue.extend({
   name: 'BmlCode',
   functional: true,
   props: {
     value: {
-      type: String
+      type: String,
+      required: true
     },
     inline: {
       type: Boolean,
@@ -37,6 +39,7 @@ export default {
         Object.assign({}, ctx.data, {
           class: [ctx.data.class, className],
           domProps: Object.assign({}, ctx.data.domProps, {
+            // @ts-expect-error
             innerHTML: Prism.highlight(code, prismLanguage)
           })
         })
@@ -52,10 +55,11 @@ export default {
         h('code', {
           class: className,
           domProps: {
+            // @ts-expect-error
             innerHTML: Prism.highlight(code, prismLanguage)
           }
         })
       ]
     )
   }
-}
+})

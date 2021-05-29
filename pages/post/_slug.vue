@@ -1,28 +1,38 @@
 <template>
-  <v-row>
-    <v-col cols="12">
-      <template v-if="$fetchState.pending">
-        <v-card>
-          <v-skeleton-loader type="article" />
-        </v-card>
-      </template>
-      <template v-else-if="$fetchState.error">
-        <error-card :error="$fetchState.error" @reload="$fetch" />
-      </template>
-      <template v-else>
-        <post :post="post" />
-      </template>
-    </v-col>
-  </v-row>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="12" sm="7" md="8">
+        <v-row>
+          <v-col cols="12">
+            <template v-if="$fetchState.pending">
+              <v-card>
+                <v-skeleton-loader type="article" />
+              </v-card>
+            </template>
+            <template v-else-if="$fetchState.error">
+              <error-card :error="$fetchState.error" @reload="$fetch" />
+            </template>
+            <template v-else>
+              <post :post="post" />
+            </template>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="12" sm="5" md="4">
+        <tags-card class="mt-4" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import Post from '~/components/post/Post.vue'
 import ErrorCard from '~/components/app/ErrorCard.vue'
+import TagsCard from '~/components/tag/TagsCard.vue'
 
 export default Vue.extend({
-  components: { Post, ErrorCard },
+  components: { Post, ErrorCard, TagsCard },
   data() {
     return {
       post: {} as any

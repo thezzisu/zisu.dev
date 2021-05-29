@@ -42,7 +42,7 @@
     </template>
     <v-divider />
     <v-card-text>
-      <bml :value="post.summary" />
+      <bml :value="post.summary" html />
     </v-card-text>
     <v-divider />
     <v-card-actions class="py-1">

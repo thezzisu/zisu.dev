@@ -9,6 +9,10 @@ export default Vue.extend({
     value: {
       type: String,
       required: true
+    },
+    html: {
+      type: Boolean,
+      default: false
     }
   },
   render(h, { props, data }) {
@@ -16,7 +20,7 @@ export default Vue.extend({
     return h(
       'div',
       { ...data, class: 'bml-root' },
-      blocks.map((block) => h(Block, { props: { block } }))
+      blocks.map((block) => h(Block, { props: { block, html: props.html } }))
     )
   }
 })

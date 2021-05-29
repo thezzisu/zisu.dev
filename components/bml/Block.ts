@@ -22,6 +22,10 @@ export default Vue.extend({
     block: {
       type: Object,
       required: true
+    },
+    html: {
+      type: Boolean,
+      default: false
     }
   },
   render(h, { props, data }) {
@@ -31,7 +35,8 @@ export default Vue.extend({
         ...data,
         props: {
           ...block.props,
-          value: block.value
+          value: block.value,
+          html: props.html
         }
       })
     ])
