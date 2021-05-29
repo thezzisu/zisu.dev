@@ -32,8 +32,9 @@
           <v-divider />
           <v-list>
             <v-list-item v-for="(link, i) in links" :key="i" v-bind="link.link">
-              <v-list-item-avatar tile size="24">
-                <v-icon>{{ link.icon }}</v-icon>
+              <v-list-item-avatar tile size="32">
+                <v-icon v-if="'icon' in link">{{ link.icon }}</v-icon>
+                <img v-else :src="link.img" :alt="link.title" />
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>{{ link.title }}</v-list-item-title>
@@ -54,7 +55,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mdiFormatListText, mdiArrowDown } from '@mdi/js'
+import { mdiFormatListText, mdiArrowDown, mdiTrafficLight } from '@mdi/js'
 import RecentPosts from '~/components/post/RecentPosts.vue'
 import ContactCard from '~/components/misc/ContactCard.vue'
 
@@ -71,6 +72,19 @@ export default Vue.extend({
           icon: mdiFormatListText,
           title: 'Blog',
           subtitle: 'zisu.dev blog'
+        },
+        {
+          link: { href: 'https://status.zisu.dev', target: '_blank' },
+          icon: mdiTrafficLight,
+          title: 'Status Page',
+          subtitle: 'zisu.dev status'
+        },
+        {
+          link: { href: 'https://swarm-p.com', target: '_blank' },
+          title: 'SwarmP Home Page',
+          subtitle: 'SwarmP - 筱玛团队',
+          img:
+            'https://res.zisu.dev/img/raw.githubusercontent.com/f=auto,h=32,w=32/swarmp/website/96f06ce984b9181cb9335219ff2bb7b8ee4a584b/static/icon.png'
         }
       ],
 

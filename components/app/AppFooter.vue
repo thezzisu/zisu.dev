@@ -3,14 +3,28 @@
     <v-container fluid>
       <v-row justify="end">
         <v-col cols="auto">
-          <div class="text-right text-monospace text--white">
+          <div class="text-center text-monospace text--white">
             <div>
               <v-btn
-                outlined
+                depressed
+                target="_blank"
+                href="https://dev2dev.zisu.dev"
+                rel="noreferrer"
+                small
+                class="text-none"
+                dark
+              >
+                <v-icon left>{{ svgDev2Dev }}</v-icon>
+                Dev2Dev
+              </v-btn>
+            </div>
+            <div>
+              <v-btn
+                depressed
                 target="_blank"
                 href="https://travellings.pages.dev"
                 small
-                class="text-none"
+                class="text-none mt-1"
               >
                 <v-icon left>{{ mdiTrainVariant }}</v-icon>
                 Travelling
@@ -22,7 +36,7 @@
           </div>
         </v-col>
         <v-divider vertical />
-        <v-col cols="auto">
+        <v-col cols="auto align-center d-flex">
           <div class="text-right text-monospace text--white">
             <div>
               <template v-for="(badge, i) of badges">
@@ -48,6 +62,7 @@
 import Vue from 'vue'
 import { mdiCertificate, mdiCreativeCommons, mdiTrainVariant } from '@mdi/js'
 import Status from '~/components/app/Status.vue'
+import { svgDev2Dev } from '~/utils/dev2dev'
 
 export default Vue.extend({
   name: 'AppFooter',
@@ -65,7 +80,8 @@ export default Vue.extend({
           text: 'BY-SA'
         }
       ],
-      mdiTrainVariant
+      mdiTrainVariant,
+      svgDev2Dev
     }
   }
 })

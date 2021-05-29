@@ -62,7 +62,7 @@ export default Vue.extend({
       {
         href: 'https://github.com/thezzisu',
         img:
-          'https://img.shields.io/github/followers/thezzisu?label=Follow%20%40zzisu&style=social',
+          'https://img.shields.io/github/followers/thezzisu?label=Follow%20%40thezzisu&style=social',
         text: 'GitHub'
       },
       {

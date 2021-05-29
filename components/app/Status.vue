@@ -16,9 +16,9 @@
         status: {{ status }}
       </v-btn>
     </template>
-    <span>
+    <code>
       {{ counts }}
-    </span>
+    </code>
   </v-tooltip>
 </template>
 
@@ -56,8 +56,9 @@ export default Vue.extend({
     )
     this.status = status
     const { up, down, paused, total } = counts
-    this.counts = `up ${up} down ${down} paused ${paused} total ${total}`
+    this.counts = `${up} up + ${down} down + ${paused} paused = ${total}`
     this.booted = true
-  }
+  },
+  fetchOnServer: false
 })
 </script>
