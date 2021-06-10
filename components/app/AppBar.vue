@@ -13,9 +13,11 @@
         <v-avatar left>
           <img :src="require('~/static/icon.png')" alt="site logo" />
         </v-avatar>
-        <v-badge :content="version" inline>
-          <code>zisu.dev</code>
-        </v-badge>
+        <template v-if="!$vuetify.breakpoint.xs">
+          <v-badge :content="version" inline>
+            <code>zisu.dev</code>
+          </v-badge>
+        </template>
       </v-btn>
     </v-fade-transition>
     <v-spacer />
