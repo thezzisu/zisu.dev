@@ -2,24 +2,20 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" sm="7" md="8">
-        <v-row>
-          <v-col cols="12">
-            <template v-if="$fetchState.pending">
-              <v-card>
-                <v-skeleton-loader type="article" />
-              </v-card>
-            </template>
-            <template v-else-if="$fetchState.error">
-              <error-card :error="$fetchState.error" @reload="$fetch" />
-            </template>
-            <template v-else>
-              <post :post="post" />
-            </template>
-          </v-col>
-        </v-row>
+        <template v-if="$fetchState.pending">
+          <v-card>
+            <v-skeleton-loader type="article" />
+          </v-card>
+        </template>
+        <template v-else-if="$fetchState.error">
+          <error-card :error="$fetchState.error" @reload="$fetch" />
+        </template>
+        <template v-else>
+          <post :post="post" />
+        </template>
       </v-col>
       <v-col cols="12" sm="5" md="4">
-        <tags-card class="mt-4" />
+        <tags-card />
       </v-col>
     </v-row>
   </v-container>

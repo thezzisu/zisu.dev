@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" lg="6" xl="4">
-        <v-card>
+        <v-card v-intersect="onIntersect">
           <v-card-title class="justify-center">
             <v-avatar size="128">
               <img :src="require('~/static/icon.png')" alt="site logo" />
@@ -83,8 +83,7 @@ export default Vue.extend({
           link: { href: 'https://swarm-p.com', target: '_blank' },
           title: 'SwarmP Home Page',
           subtitle: 'SwarmP - 筱玛团队',
-          img:
-            'https://res.zisu.dev/img/raw.githubusercontent.com/f=auto,h=32,w=32/swarmp/website/96f06ce984b9181cb9335219ff2bb7b8ee4a584b/static/icon.png'
+          img: 'https://res.zisu.dev/img/raw.githubusercontent.com/f=auto,h=32,w=32/swarmp/website/96f06ce984b9181cb9335219ff2bb7b8ee4a584b/static/icon.png'
         }
       ],
 
@@ -97,6 +96,11 @@ export default Vue.extend({
   computed: {
     motto() {
       return this.$vuetify.theme.dark ? 'ZGVsdXNpb24=' : 'Code is philosophy'
+    }
+  },
+  methods: {
+    onIntersect(entries: IntersectionObserverEntry[]) {
+      this.$store.set('bar@IndexShowLogo', !entries[0].isIntersecting)
     }
   }
 })

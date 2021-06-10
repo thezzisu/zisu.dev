@@ -1,31 +1,33 @@
 <template>
-  <v-navigation-drawer
-    id="settings-drawer"
-    v-model="settings"
-    right
-    disable-route-watcher
-    app
-    hide-overlay
-    temporary
-  >
-    <v-toolbar flat color="transparent">
-      <div class="text-button">Settings</div>
-      <v-spacer />
-      <v-btn icon @click="settings = !settings">
-        <v-icon>{{ mdiClose }}</v-icon>
-      </v-btn>
-    </v-toolbar>
-    <v-divider />
-    <template v-if="settings">
-      <theme />
+  <client-only>
+    <v-navigation-drawer
+      id="settings-drawer"
+      v-model="settings"
+      right
+      disable-route-watcher
+      app
+      hide-overlay
+      temporary
+    >
+      <v-toolbar flat color="transparent">
+        <div class="text-button">Settings</div>
+        <v-spacer />
+        <v-btn icon @click="settings = !settings">
+          <v-icon>{{ mdiClose }}</v-icon>
+        </v-btn>
+      </v-toolbar>
       <v-divider />
-      <editor />
-      <v-divider />
-      <storage />
-      <v-divider />
-      <version />
-    </template>
-  </v-navigation-drawer>
+      <template v-if="settings">
+        <theme />
+        <v-divider />
+        <editor />
+        <v-divider />
+        <storage />
+        <v-divider />
+        <version />
+      </template>
+    </v-navigation-drawer>
+  </client-only>
 </template>
 
 <script lang="ts">

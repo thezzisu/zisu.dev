@@ -1,12 +1,8 @@
 <template>
   <v-app :class="{ acrylic }">
-    <app-bar v-model="drawer" />
-    <client-only>
-      <v-navigation-drawer v-model="drawer" app>
-        <app-nav />
-      </v-navigation-drawer>
-      <app-settings-drawer />
-    </client-only>
+    <app-bar />
+    <app-nav />
+    <app-settings-drawer />
     <v-main>
       <nuxt />
     </v-main>
@@ -17,7 +13,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { get } from 'vuex-pathify'
+import { get, sync } from 'vuex-pathify'
 import AppBar from '~/components/app/AppBar.vue'
 import AppFooter from '~/components/app/AppFooter.vue'
 import AppBg from '~/components/app/AppBg.vue'
@@ -34,7 +30,8 @@ export default Vue.extend({
   },
   computed: {
     theme: get('theme'),
-    acrylic: get('persist@acrylic')
+    acrylic: get('persist@acrylic'),
+    nav: sync('drawers@nav')
   },
   watch: {
     theme: {

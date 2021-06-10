@@ -5,7 +5,11 @@ import pathify, { make } from 'vuex-pathify'
 export const state = () => ({
   user: null as Record<string, any> | null,
   zen: false,
+  bar: {
+    IndexShowLogo: false
+  },
   drawers: {
+    nav: false,
     settings: false
   },
   persist: {

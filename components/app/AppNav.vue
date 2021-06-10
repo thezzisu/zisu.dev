@@ -1,26 +1,28 @@
 <template>
-  <v-list nav dense>
-    <v-list-item to="/">
-      <v-list-item-avatar tile size="24">
-        <v-img :src="require('~/assets/logo.svg')" />
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title class="text-monospace">Home</v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
-    <v-list-item v-for="(link, i) of links" :key="i" v-bind="link.link" nuxt>
-      <v-list-item-avatar tile size="24">
-        <v-icon>{{ link.icon }}</v-icon>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title class="text-monospace" v-text="link.text" />
-      </v-list-item-content>
-    </v-list-item>
-    <template v-if="isAdmin">
-      <v-divider />
-      <admin-nav />
-    </template>
-  </v-list>
+  <v-navigation-drawer v-model="nav" app>
+    <v-list nav dense>
+      <v-list-item to="/">
+        <v-list-item-avatar tile size="24">
+          <v-img :src="require('~/assets/logo.svg')" />
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title class="text-monospace">Home</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item v-for="(link, i) of links" :key="i" v-bind="link.link" nuxt>
+        <v-list-item-avatar tile size="24">
+          <v-icon>{{ link.icon }}</v-icon>
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title class="text-monospace" v-text="link.text" />
+        </v-list-item-content>
+      </v-list-item>
+      <template v-if="isAdmin">
+        <v-divider />
+        <admin-nav />
+      </template>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <script lang="ts">
@@ -34,6 +36,7 @@ import {
   mdiTrainVariant,
   mdiUpdate
 } from '@mdi/js'
+import { sync } from 'vuex-pathify'
 import AdminNav from '~/components/admin/AdminNav.vue'
 import { svgDev2Dev } from '~/utils/dev2dev'
 
@@ -62,7 +65,8 @@ export default Vue.extend({
     }
   },
   computed: {
-    ...mapGetters(['isAdmin'])
+    ...mapGetters(['isAdmin']),
+    nav: sync('drawers@nav')
   }
 })
 </script>
