@@ -44,6 +44,7 @@ export default Vue.extend({
       this.$vuetify.goTo(0)
     },
     onScroll() {
+      if (!process.client) return
       const top = window.pageYOffset || document.documentElement.offsetTop || 0
       this.fab = top > 128
     }
