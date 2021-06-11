@@ -8,7 +8,7 @@
         text
         class="text-none text-h5"
         href="/"
-        @click.stop.prevent="$router.push('/')"
+        @click.stop.prevent="onLogoClick"
       >
         <v-avatar left>
           <img :src="require('~/static/icon.png')" alt="site logo" />
@@ -58,15 +58,15 @@ export default Vue.extend({
     nav: sync('drawers@nav'),
     settings: sync('drawers@settings'),
     IndexShowLogo: sync('bar@IndexShowLogo')
+  },
+  methods: {
+    onLogoClick() {
+      if (this.$route.path === '/') {
+        this.$vuetify.goTo(0)
+      } else {
+        this.$router.push('/')
+      }
+    }
   }
 })
 </script>
-
-<style>
-.theme--dark .site-title {
-  color: #fff;
-}
-.theme--light .site-title {
-  color: #000;
-}
-</style>

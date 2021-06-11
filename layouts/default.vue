@@ -6,6 +6,7 @@
     <v-main>
       <nuxt />
     </v-main>
+    <app-speed-dial />
     <app-footer />
     <app-bg />
   </v-app>
@@ -19,10 +20,18 @@ import AppFooter from '~/components/app/AppFooter.vue'
 import AppBg from '~/components/app/AppBg.vue'
 import AppNav from '~/components/app/AppNav.vue'
 import AppSettingsDrawer from '~/components/app/AppSettingsDrawer.vue'
+import AppSpeedDial from '~/components/app/AppSpeedDial.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { AppBg, AppBar, AppFooter, AppNav, AppSettingsDrawer },
+  components: {
+    AppBg,
+    AppBar,
+    AppFooter,
+    AppNav,
+    AppSettingsDrawer,
+    AppSpeedDial
+  },
   data() {
     return {
       drawer: null

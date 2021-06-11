@@ -7,7 +7,7 @@ const plugin: Plugin = (ctx) => {
       title: 'Zen',
       message: ctx.store.state.zen ? 'Disabled' : 'Enabled'
     })
-    ctx.store.commit('zen:update', !ctx.store.state.zen)
+    ctx.store.set('zen', !ctx.store.state.zen)
   })
 }
 

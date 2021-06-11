@@ -9,7 +9,7 @@
       hide-overlay
       temporary
     >
-      <v-toolbar flat color="transparent">
+      <v-toolbar flat color="transparent" dense>
         <div class="text-button">Settings</div>
         <v-spacer />
         <v-btn icon @click="settings = !settings">

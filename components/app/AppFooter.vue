@@ -1,5 +1,5 @@
 <template>
-  <v-footer>
+  <v-footer v-scroll="onScroll">
     <v-container fluid>
       <v-row justify="end">
         <v-col cols="auto">
@@ -82,6 +82,14 @@ export default Vue.extend({
       ],
       mdiTrainVariant,
       svgDev2Dev
+    }
+  },
+  methods: {
+    onScroll() {
+      if (!process.client) return
+      const rect = this.$el.getBoundingClientRect()
+      const offset = window.innerHeight - rect.y
+      this.$store.set('footer@offset', offset)
     }
   }
 })
