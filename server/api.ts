@@ -67,9 +67,14 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
         }
       }
     `
-    const data = await client.request(query)
-    const discussion = data.search.nodes[0]
-    res.json(discussion)
+    try {
+      const data = await client.request(query)
+      const discussion = data.search.nodes[0]
+      if (!discussion) return res.sendStatus(404)
+      res.json(discussion)
+    } catch (e) {
+      res.sendStatus(400)
+    }
   })
 
   app.get('/comments/more', async (req, res) => {
@@ -125,8 +130,13 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
         }
       }
     `
-    const data = await client.request(query)
-    res.json(data.node.comments)
+    try {
+      const data = await client.request(query)
+      if (!data.node.comments) return res.sendStatus(404)
+      res.json(data.node.comments)
+    } catch (e) {
+      res.sendStatus(400)
+    }
   })
 
   app.get('/comments/replies/more', async (req, res) => {
@@ -162,8 +172,13 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
         }
       }
     `
-    const data = await client.request(query)
-    res.json(data.node.replies)
+    try {
+      const data = await client.request(query)
+      if (!data.node.replies) return res.sendStatus(404)
+      res.json(data.node.replies)
+    } catch (e) {
+      res.sendStatus(400)
+    }
   })
 }
 
