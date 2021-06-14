@@ -48,7 +48,15 @@ const config: NuxtConfig = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: []
   },
-  css: ['~/styles/vuetify.scss', '~/styles/global.scss'],
+  serverMiddleware: [
+    { path: '/api', handler: '~/server/api.ts', prefix: false }
+    //
+  ],
+  css: [
+    '~/styles/vuetify.scss',
+    '~/styles/global.scss'
+    //
+  ],
   plugins: [
     '~/plugins/init.ts',
     '~/plugins/persist-state.client.ts',
