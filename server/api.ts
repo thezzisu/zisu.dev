@@ -17,7 +17,7 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
     const id = req.query.id
     const query = gql`
       query {
-        search(type: DISCUSSION, query: "repo:${repo} in:title comments_${id}", first: 1) {
+        search(type: DISCUSSION, query: "repo:${repo} category:Comments in:title comments_${id}", first: 1) {
           nodes {
             ... on Discussion {
               id
