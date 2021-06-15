@@ -1,8 +1,8 @@
 const STATICALLY_BASE = 'https://res.zisu.dev'
 
 function parse(url: string) {
-  const [, host, path] = url.match(/^(?:https?:)?\/\/([^/]+)(\/.*)?$/i)!
-  return { host, path }
+  const o = new URL(url)
+  return { host: o.hostname, path: o.pathname }
 }
 
 function cvt(params: Record<string, any> | undefined) {

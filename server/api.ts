@@ -22,7 +22,7 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
             ... on Discussion {
               id
               url
-              comments(first: 10) {
+              comments(first: 25) {
                 totalCount
                 pageInfo {
                   endCursor
@@ -32,6 +32,9 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
                   id
                   url
                   bodyHTML
+                  createdAt
+                  deletedAt
+                  lastEditedAt
                   author {
                     ... on User {
                       login
@@ -40,7 +43,7 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
                       avatarUrl(size: 64)
                     }
                   }
-                  replies(first: 10) {
+                  replies(first: 25) {
                     totalCount
                     pageInfo {
                       endCursor
@@ -50,6 +53,9 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
                       id
                       url
                       bodyHTML
+                      createdAt
+                      deletedAt
+                      lastEditedAt
                       author {
                         ... on User {
                           login
@@ -85,7 +91,7 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
         node(id: "${node}") {
           ... on Discussion {
             comments(
-              first: 10
+              first: 25
               after: "${cursor}"
             ) {
               pageInfo {
@@ -96,6 +102,9 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
                 id
                 url
                 bodyHTML
+                createdAt
+                deletedAt
+                lastEditedAt
                 author {
                   ... on User {
                     login
@@ -104,7 +113,7 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
                     avatarUrl(size: 64)
                   }
                 }
-                replies(first: 10) {
+                replies(first: 25) {
                   totalCount
                   pageInfo {
                     endCursor
@@ -114,6 +123,9 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
                     id
                     url
                     bodyHTML
+                    createdAt
+                    deletedAt
+                    lastEditedAt
                     author {
                       ... on User {
                         login
@@ -147,7 +159,7 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
         node(id: "${node}") {
           ... on DiscussionComment {
             replies(
-              first: 10
+              first: 25
               after: "${cursor}"
             ) {
               pageInfo {
@@ -158,6 +170,9 @@ if (process.env.GH_TOKEN && process.env.GH_REPO) {
                 id
                 url
                 bodyHTML
+                createdAt
+                deletedAt
+                lastEditedAt
                 author {
                   ... on User {
                     login

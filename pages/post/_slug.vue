@@ -12,6 +12,7 @@
         </template>
         <template v-else>
           <post :post="post" />
+          <comments :id="post._id" class="mt-2" />
         </template>
       </v-col>
       <v-col cols="12" sm="5" md="4">
@@ -26,9 +27,10 @@ import Vue from 'vue'
 import Post from '~/components/post/Post.vue'
 import ErrorCard from '~/components/app/ErrorCard.vue'
 import TagsCard from '~/components/tag/TagsCard.vue'
+import Comments from '~/components/comment/Comments.vue'
 
 export default Vue.extend({
-  components: { Post, ErrorCard, TagsCard },
+  components: { Post, ErrorCard, TagsCard, Comments },
   data() {
     return {
       post: {} as any
