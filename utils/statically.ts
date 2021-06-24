@@ -8,7 +8,9 @@ function cvt(params: Record<string, any> | undefined) {
 }
 
 export function img(url: string) {
-  const { protocol, host, pathname } = new URL(url)
+  const { protocol: _protocol, host, pathname } = new URL(url)
+  // Strip the `:` suffix
+  const protocol = _protocol.substr(0, _protocol.length - 1)
   return `${STATICALLY_BASE}/img/${protocol}/${host}${pathname}`
 }
 
