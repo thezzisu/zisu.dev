@@ -83,7 +83,7 @@ export default Vue.extend({
           link: { href: 'https://swarm-p.com', target: '_blank' },
           title: 'SwarmP Home Page',
           subtitle: 'SwarmP - 筱玛团队',
-          img: 'https://res.zisu.dev/img/raw.githubusercontent.com/f=auto,h=32,w=32/swarmp/website/96f06ce984b9181cb9335219ff2bb7b8ee4a584b/static/icon.png'
+          img: 'https://res.zisu.dev/img/https/raw.githubusercontent.com/swarmp/website/96f06ce984b9181cb9335219ff2bb7b8ee4a584b/static/icon.png'
         }
       ],
 
