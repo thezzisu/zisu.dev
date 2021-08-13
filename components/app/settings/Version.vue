@@ -6,6 +6,11 @@
         {{ build.version }} {{ build.git.hash }} {{ build.git.branch }}
       </code>
     </div>
+    <div class="build-info">
+      <code>
+        {{ new Date(build.time).toJSON() }}
+      </code>
+    </div>
   </div>
 </template>
 
@@ -24,5 +29,8 @@ export default Vue.extend({
 <style scoped>
 .version-info {
   font-size: 0.75rem;
+}
+.build-info {
+  font-size: 0.6rem;
 }
 </style>

@@ -34,7 +34,7 @@
             rel="noreferrer"
           >
             <img
-              :src="`https://img.shields.io/static/v1?label=&message=${c.text}&color=${c.color}&style=flat-square&logo=${c.icon}&logoColor=FFF`"
+              :src="`https://img.shields.io/static/v1?label=${c.label}&message=${c.text}&color=${c.color}&style=flat-square&logo=${c.icon}&logoColor=FFF`"
               :alt="c.text"
             />
           </a>
@@ -61,8 +61,7 @@ export default Vue.extend({
     social: [
       {
         href: 'https://github.com/thezzisu',
-        img:
-          'https://img.shields.io/github/followers/thezzisu?label=Follow%20%40thezzisu&style=social',
+        img: 'https://img.shields.io/github/followers/thezzisu?label=Follow%20%40thezzisu&style=social',
         text: 'GitHub'
       },
       {
@@ -73,37 +72,55 @@ export default Vue.extend({
     ],
     contacts: [
       {
+        color: '07C160',
+        icon: 'wechat',
+        text: 'thezzisu',
+        label: ''
+      },
+      {
         href: 'https://t.me/thezzisu',
         color: '2CA5E0',
         icon: 'telegram',
-        text: 'thezzisu'
-      },
-      {
-        href: 'mailto:thezzisu@gmail.com',
-        color: 'blue',
-        icon: 'gmail',
-        text: 'thezzisu@gmail.com'
+        text: 'thezzisu',
+        label: ''
       },
       {
         href: 'https://space.bilibili.com/38430118',
         color: '00A1D6',
         icon: 'bilibili',
-        text: 'thezzisu'
+        text: 'thezzisu',
+        label: ''
       },
       {
         href: 'https://www.zhihu.com/people/zhangzisu',
         color: '0084FF',
         icon: 'zhihu',
-        text: 'zhangzisu'
+        text: 'thezzisu',
+        label: ''
       },
       {
         color: 'EB1923',
         text: '2807616946',
-        label: 'QQ'
+        icon: 'tencentqq',
+        label: ''
       },
       {
         text: '(86) 18067896891',
         label: 'TEL'
+      },
+      {
+        href: 'mailto:thezzisu@gmail.com',
+        color: 'blue',
+        icon: 'gmail',
+        text: 'thezzisu@gmail.com',
+        label: 'Personal'
+      },
+      {
+        href: 'mailto:thezzisu@stu.pku.edu.cn',
+        color: 'blue',
+        icon: 'gmail',
+        text: 'thezzisu@stu.pku.edu.cn',
+        label: 'School'
       }
     ]
   })
