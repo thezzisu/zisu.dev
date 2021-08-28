@@ -16,17 +16,7 @@ const plugin: Plugin = ({ store }) => {
   localStorage.setItem('state', JSON.stringify(store.state.persist))
 
   window.addEventListener('storage', (ev) => {
-    if (ev.key === 'state') {
-      const parsed = tryParseStorage('state')
-      const { persist, ...old } = store.state
-      store.replaceState({
-        ...old,
-        persist: {
-          ...persist,
-          ...parsed
-        }
-      })
-    } else if (ev.key === 'local') {
+    if (ev.key === 'local') {
       const parsed = tryParseStorage('local')
       const { local, ...old } = store.state
       store.replaceState({
@@ -38,15 +28,6 @@ const plugin: Plugin = ({ store }) => {
       })
     }
   })
-
-  store.watch(
-    (state) => state.persist,
-    (value) => {
-      store.$cookies.set('state', JSON.stringify(value), { path: '/' })
-      localStorage.setItem('state', JSON.stringify(value))
-    },
-    { deep: true }
-  )
 
   store.watch(
     (state) => state.local,

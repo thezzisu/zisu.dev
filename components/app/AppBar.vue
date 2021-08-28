@@ -41,11 +41,9 @@
 import Vue from 'vue'
 import { mdiCog, mdiGithub } from '@mdi/js'
 import { sync } from 'vuex-pathify'
-import UserIndicator from '~/components/app/AppBarUserIndicator.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { UserIndicator },
   data() {
     return {
       version: BUILD.version,

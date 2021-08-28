@@ -25,16 +25,6 @@
         <v-chip color="red" outlined>Pinned</v-chip>
       </template>
     </v-card-title>
-    <template v-if="isAdmin">
-      <v-divider />
-      <v-card-actions>
-        <v-chip small :color="post.public ? 'success' : 'error'">
-          {{ post.public ? 'Public' : 'Private' }}
-        </v-chip>
-        <v-spacer />
-        <v-btn outlined small :to="'/admin/post/' + post._id" nuxt>Edit</v-btn>
-      </v-card-actions>
-    </template>
     <v-divider />
     <v-card-text>
       <bml v-if="post.summary" id="_summary" :value="post.summary" html />
@@ -55,7 +45,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
 import { mdiClockOutline, mdiCalendarEdit } from '@mdi/js'
 import Bml from '~/components/bml/Bml'
 import TagChip from '~/components/tag/TagChip.vue'
@@ -74,9 +63,6 @@ export default Vue.extend({
       mdiClockOutline,
       mdiCalendarEdit
     }
-  },
-  computed: {
-    ...mapGetters(['isAdmin'])
   }
 })
 </script>

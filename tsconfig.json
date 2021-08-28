@@ -29,7 +29,6 @@
       "@nuxt/vue-app",
       "@nuxtjs/axios",
       "@nuxtjs/vuetify",
-      "cookie-universal-nuxt",
       "vuex-pathify/types/vuex"
     ]
   },

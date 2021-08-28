@@ -17,17 +17,12 @@
           <v-list-item-title class="text-monospace" v-text="link.text" />
         </v-list-item-content>
       </v-list-item>
-      <template v-if="isAdmin">
-        <v-divider />
-        <admin-nav />
-      </template>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
 import {
   mdiFormatListText,
   mdiInformationOutline,
@@ -37,12 +32,10 @@ import {
   mdiUpdate
 } from '@mdi/js'
 import { sync } from 'vuex-pathify'
-import AdminNav from '~/components/admin/AdminNav.vue'
 import { svgDev2Dev } from '~/utils/dev2dev'
 
 export default Vue.extend({
   name: 'AppNav',
-  components: { AdminNav },
   data() {
     return {
       links: [
@@ -65,7 +58,6 @@ export default Vue.extend({
     }
   },
   computed: {
-    ...mapGetters(['isAdmin']),
     nav: sync('drawers@nav')
   }
 })

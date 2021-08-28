@@ -9,14 +9,6 @@
                 <v-icon left>{{ mdiLabel }}</v-icon>
                 {{ tag.title }}
               </v-card-title>
-              <template v-if="isAdmin">
-                <v-divider />
-                <v-card-text>
-                  <v-btn outlined small :to="'/admin/tag/' + tag._id" nuxt>
-                    Edit
-                  </v-btn>
-                </v-card-text>
-              </template>
               <v-divider />
               <v-card-text>
                 <bml :value="tag.content" />
@@ -69,7 +61,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
 import { mdiLabel } from '@mdi/js'
 import PostList from '~/components/post/PostList.vue'
 import Bml from '~/components/bml/Bml'
@@ -112,9 +103,6 @@ export default Vue.extend({
     return {
       title: 'Tag: ' + this.$data.tag.title
     }
-  },
-  computed: {
-    ...mapGetters(['isAdmin'])
   },
   watch: {
     curPage() {
