@@ -39,7 +39,7 @@ export default Vue.extend({
   },
   computed: {
     theme: get('theme'),
-    acrylic: get('persist@acrylic'),
+    acrylic: get('local@acrylic'),
     nav: sync('drawers@nav')
   },
   watch: {

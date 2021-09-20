@@ -2,6 +2,8 @@ import cp from 'child_process'
 import path from 'path'
 import fs from 'fs'
 import { NuxtConfig } from '@nuxt/types'
+import { DefinePlugin } from 'webpack'
+import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin'
 
 const APP_NAME = 'zisu.dev'
 const APP_DESC = 'zisu.dev'
@@ -34,7 +36,7 @@ function findPackage() {
 // #region main config
 
 const config: NuxtConfig = {
-  target: 'server',
+  target: 'static',
   modern: true,
   components: false,
   head: {
@@ -48,10 +50,6 @@ const config: NuxtConfig = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: []
   },
-  serverMiddleware: [
-    { path: '/api', handler: '~/server/api.ts', prefix: false }
-    //
-  ],
   css: [
     '~/styles/vuetify.scss',
     '~/styles/global.scss'
@@ -65,7 +63,6 @@ const config: NuxtConfig = {
     '~/plugins/swc.client.ts'
   ],
   modules: [
-    '@nuxtjs/axios',
     '@nuxt/content'
     //
   ],
@@ -75,7 +72,21 @@ const config: NuxtConfig = {
     '@nuxtjs/pwa'
     //
   ],
-  build: {},
+  build: {
+    plugins: [
+      // @ts-ignore
+      new MonacoWebpackPlugin(),
+      // @ts-ignore
+      new DefinePlugin({
+        BUILD: JSON.stringify({
+          git: getGitInfo(),
+          time: Date.now(),
+          version: findPackage().version,
+          node: process.version
+        })
+      })
+    ]
+  },
   env: {
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || ''
   },
@@ -111,30 +122,6 @@ const config: NuxtConfig = {
 }
 
 // #endregion
-
-if (!process.env.VERCEL || process.env.CI) {
-  const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
-  const { DefinePlugin } = require('webpack')
-
-  const pkg = findPackage()
-
-  config.build!.plugins = [
-    new MonacoWebpackPlugin(),
-    new DefinePlugin({
-      BUILD: JSON.stringify({
-        git: getGitInfo(),
-        time: Date.now(),
-        version: pkg.version,
-        node: process.version
-      })
-    })
-  ]
-
-  config.build!.babel = {
-    // supress babel loose warning
-    plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]]
-  }
-}
 
 if (process.env.CF_BEACON_TOKEN) {
   // @ts-ignore

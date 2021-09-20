@@ -31,6 +31,8 @@ import {
   mdiPause
 } from '@mdi/js'
 import Vue from 'vue'
+import { getStatus } from '~/api/status'
+
 export default Vue.extend({
   name: 'Status',
   data: () => ({
@@ -51,9 +53,7 @@ export default Vue.extend({
     }
   }),
   async fetch() {
-    const { status, counts } = await this.$axios.$get(
-      'https://api.zisu.dev/status/summary'
-    )
+    const { status, counts } = await getStatus()
     this.status = status
     const { up, down, paused, total } = counts
     this.counts = `${up} up + ${down} down + ${paused} paused = ${total}`
