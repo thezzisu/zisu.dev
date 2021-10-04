@@ -87,7 +87,7 @@ export default Vue.extend({
       {
         color: '5865F2',
         icon: 'discord',
-        text: 'thezzisu#1922',
+        text: 'thezzisu%231922',
         label: ''
       },
       {
