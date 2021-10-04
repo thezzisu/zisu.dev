@@ -85,6 +85,12 @@ export default Vue.extend({
         label: ''
       },
       {
+        color: '5865F2',
+        icon: 'discord',
+        text: 'thezzisu#1922',
+        label: ''
+      },
+      {
         href: 'https://space.bilibili.com/38430118',
         color: '00A1D6',
         icon: 'bilibili',
