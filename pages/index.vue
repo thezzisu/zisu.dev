@@ -2,6 +2,15 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" lg="6" xl="4">
+        <v-card>
+          <v-alert type="warning">
+            Zisu.dev is currently under reconstruction. All API services are stopped.
+          </v-alert>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" lg="6" xl="4">
         <v-card v-intersect="onIntersect">
           <v-card-title class="justify-center">
             <v-avatar size="128">
@@ -43,11 +52,6 @@
             </v-list-item>
           </v-list>
         </v-card>
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col cols="12" lg="6" xl="4">
-        <recent-posts />
       </v-col>
     </v-row>
   </v-container>
